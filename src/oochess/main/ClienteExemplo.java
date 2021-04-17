@@ -18,14 +18,11 @@ public class ClienteExemplo {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		OOChess p = new OOChess();
-		
 		RegistarUtilizadorHandler regHandler = p.getRegistarUtilizadorHandler();
 		
 		regHandler.registarUtilizador("Felismina", "hortadafcul", "fel1sgamer");
 		regHandler.registarUtilizador("Silvino", "bardoc2", "s1lv1n0");
 		regHandler.registarUtilizador("Maribel", "torredotombo", "SkubaPatr0l");
-		
-		
 		
 		// SSD - UC5
 		Optional<Sessao> talvezSessao = p.autenticar("Silvino", "bardoc2");
@@ -34,7 +31,7 @@ public class ClienteExemplo {
 			DesafiarHandler desh = s.getDesafioParaPartidaHandler();
 			
 			desh.indicaTorneio("Torneio Xadrez da CADI");
-			
+
 			List<Object> jogadoresEElos = desh.indicaDeltaElo(50);
 			
 			desh.indicaJogador("Maribel");
