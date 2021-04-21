@@ -55,7 +55,7 @@ public class ClienteExemplo {
 		talvezOutraSessao.ifPresent( (Sessao s) -> {
 			ProcessarDesafiosHandler pdh = s.getProcessarDesafios();
 			boolean disponivel = true; 
-			for (Object o : pdh.consultarDesafiosPendentes()) {
+			for (Object o : pdh.    consultarDesafiosPendentes()) {
 				pdh.respondeADesafio("o.getCodigo()???", disponivel);
 				if (!disponivel) {
 					pdh.indicaNovaData(LocalDateTime.now().plusDays(2));

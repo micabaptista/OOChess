@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import oochess.app.facade.Sessao;
 import oochess.app.facade.handlers.RegistarUtilizadorHandler;
+import oochess.app.jogador.Jogador;
 
 /**
  * Esta é a classe do sistema.

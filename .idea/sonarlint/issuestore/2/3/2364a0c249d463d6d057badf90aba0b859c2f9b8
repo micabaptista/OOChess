@@ -1,7 +1,5 @@
 
-A
-java:S1481="&Remove this unused "o" local variable.(ÈÓ‹ùüÿÿÿÿ
-^
-java:S1192"HDefine a constant instead of duplicating this literal "Maribel" 3 times.(ù¹ïÝ
 N
-java:S1481&"3Remove this unused "jogadoresEElos" local variable.(¤Ú‹œÿÿÿÿÿ
+java:S1481#"3Remove this unused "jogadoresEElos" local variable.(¤Ú‹œÿÿÿÿÿ
+A
+java:S1481:"&Remove this unused "o" local variable.(ÈÓ‹ùüÿÿÿÿ

@@ -1,22 +1,32 @@
 package oochess.app.facade.handlers;
 
+import oochess.app.desafio.Desafio;
+import oochess.app.jogador.Jogador;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessarDesafiosHandler {
 
-	public List<Object> consultarDesafiosPendentes() {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
-	}
+    private Jogador jogadorCurrente;
+    private Desafio desafio;
 
-	public void respondeADesafio(String codigo, boolean resposta) {
-		// TODO Auto-generated method stub
-	}
+    public ProcessarDesafiosHandler(Jogador jogador) {
+        this.jogadorCurrente = jogador;
+    }
 
-	public void indicaNovaData(LocalDateTime datahora) {
-		// TODO Auto-generated method stub
-	}
+    public List<Desafio> consultarDesafiosPendentes() {
+        return jogadorCurrente.getListaDesafios();
+    }
+
+    public void respondeADesafio(String codigo, boolean resposta) {
+        this.desafio = jogadorCurrente.getDesafio(codigo);
+        desafio.setResposta(resposta);
+    }
+
+    public void indicaNovaData(LocalDateTime datahora) {
+        desafio.setDataPartida(datahora);
+    }
 
 }
