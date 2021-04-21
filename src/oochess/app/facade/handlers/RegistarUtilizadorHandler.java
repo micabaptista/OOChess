@@ -1,14 +1,16 @@
 package oochess.app.facade.handlers;
 
+import oochess.app.CatalogoJogadores;
 import oochess.app.jogador.Jogador;
+import oochess.app.jogador.JogadorBuilder;
 
 import java.util.Map;
 
 public class RegistarUtilizadorHandler {
 
-    private final Map<String, Jogador> catalogoJogadores;
+    private final CatalogoJogadores catalogoJogadores;
 
-    public RegistarUtilizadorHandler(Map<String, Jogador> catalogoJogadores) {
+    public RegistarUtilizadorHandler(CatalogoJogadores catalogoJogadores) {
         this.catalogoJogadores = catalogoJogadores;
     }
 
@@ -21,12 +23,17 @@ public class RegistarUtilizadorHandler {
      * @ensures existe um utilizador com esse username
      */
     public void registarUtilizador(String username, String password, String discordUsername) {
-        Jogador jogador = new Jogador(username, password, discordUsername);
-        this.catalogoJogadores.put(jogador.getUsername(), jogador);
+        Jogador jogador = new JogadorBuilder()
+                .withUsername(username)
+                .withPassword(password)
+                .withDiscordUsername(discordUsername)
+                .build();
+
+        this.catalogoJogadores.putJogador(jogador);
     }
 
     public boolean isJogadorRegistado(String username) {
-        return catalogoJogadores.containsKey(username);
+        return catalogoJogadores.existsJogador(username);
     }
 
 }
