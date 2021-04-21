@@ -13,10 +13,10 @@ import oochess.app.jogador.Jogador;
  */
 public class OOChess {
 
-    private Map<String, Jogador> catalogoJogadores;
+    private CatalogoJogadores catalogoJogadores;
 
     public OOChess() {
-        this.catalogoJogadores = new HashMap<>();
+        this.catalogoJogadores = CatalogoJogadores.getInstance();
     }
 
     public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
@@ -32,11 +32,11 @@ public class OOChess {
      * @return an optional session representing the authenticated user.
      */
     public Optional<Sessao> autenticar(String username, String password) {
-        boolean userExists = this.catalogoJogadores.containsKey(username);
+        boolean userExists = this.catalogoJogadores.existsJogador(username);
         if (!userExists) {
             return Optional.empty();
         }
-        String userPassword = this.catalogoJogadores.get(username).getPassword();
+        String userPassword = this.catalogoJogadores.getJogador(username).getPassword();
         return password.equals(userPassword) ? Optional.of(new Sessao()) : Optional.empty();
     }
 }

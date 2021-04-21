@@ -30,6 +30,7 @@ public class Jogador {
     protected String getDiscordUsername() {
         return discordUsername;
     }
+
     public String getPassword() {
         return password;
     }
@@ -52,7 +53,7 @@ public class Jogador {
 
 
     public boolean eloNecessario(int elo, int delta) {
-        return Math.abs(elo-this.elo) < delta;
+        return Math.abs(elo - this.elo) < delta;
     }
 
     public void adicionaDesafioEnviado(Desafio d) {
@@ -68,4 +69,23 @@ public class Jogador {
         desafiosCriados.add(d);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Jogador)) {
+            return false;
+        }
+
+        Jogador jogador2 = (Jogador) obj;
+
+        return this.username.equals(jogador2.getUsername())
+                && this.password.equals(jogador2.getPassword())
+                && this.discordUsername.equals(jogador2.getDiscordUsername())
+                && this.elo == jogador2.getElo()
+                && this.desafiosRecebidos.equals(jogador2.desafiosRecebidos)
+                && this.desafiosCriados.equals(jogador2.desafiosCriados);
+    }
 }
