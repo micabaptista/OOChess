@@ -27,3 +27,5 @@ L
 src/oochess/app/Jogador.java,f/2/f2af1c24ced5a851f582265497a5adeba62f547f
 R
 "src/oochess/app/facade/Sessao.java,4/a/4a084a9f606104fc6a7c4ac2bb337859b1620ab3
+\
+,src/oochess/test/RegistarUtilizadorTest.java,8/5/8543f2fe6a1560642c5fe76cf913e1095c3c2a75

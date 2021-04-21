@@ -1,11 +1,7 @@
 package oochess.app.facade.handlers;
 
-import oochess.app.Jogador;
-import oochess.app.OOChess;
+import oochess.app.jogador.Jogador;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RegistarUtilizadorHandler {
