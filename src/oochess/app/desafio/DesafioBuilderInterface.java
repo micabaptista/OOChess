@@ -3,9 +3,10 @@ package oochess.app.desafio;
 import java.time.LocalDateTime;
 
 public interface DesafioBuilderInterface {
-
-    public DesafioBuilder withCodigo(String codigo);
-
+	
+	
+	//falta novos atributos
+	
     public DesafioBuilder withMensagem(String mensagem);
 
     public DesafioBuilder withDataPartida(LocalDateTime dataPartida);

@@ -2,19 +2,21 @@ package oochess.app.desafio;
 
 import java.time.LocalDateTime;
 
+import oochess.app.jogador.Jogador;
+import oochess.app.torneio.Torneio;
+
 public class DesafioBuilder implements DesafioBuilderInterface {
-    private String codigo;
     private String mensagem;
     private LocalDateTime dataPartida;
     private boolean resposta;
+    
+    //novos atributos
+    private Torneio torneio; //ver se necessario, depende da classe Desafio
+    private Jogador jogadorDesafiante;
+    private Jogador jogadorDesafiado;
 
-
-    @Override
-    public DesafioBuilder withCodigo(String codigo) {
-        this.codigo = codigo;
-        return this;
-    }
-
+    
+    	//falta metodos para os novos atributos
     @Override
     public DesafioBuilder withMensagem(String mensagem) {
         this.mensagem = mensagem;
@@ -35,6 +37,6 @@ public class DesafioBuilder implements DesafioBuilderInterface {
 
     @Override
     public Desafio build() {
-        return new Desafio(codigo,mensagem,dataPartida,resposta);
+        return new Desafio(dataPartida, mensagem, jogadorDesafiante, jogadorDesafiado, torneio ,resposta);
     }
 }

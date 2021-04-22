@@ -21,9 +21,13 @@ public class CatalogoTorneios {
         }
         return instance;
     }
+    
+    public void addTorneio(Torneio t) {
+		this.catalogoTorneios.put(t.getNome(), t);
+	}
 
     public Torneio getTorneio(String nome) {
-        return null; // TODO
+        return catalogoTorneios.get(nome); 
     }
 
 

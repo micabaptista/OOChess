@@ -23,7 +23,7 @@ public class CatalogoPartidas {
         return instance;
     }
 
-
+    
     public Partida getPartida(String user, LocalDateTime data) {
         return null; // TODO
     }

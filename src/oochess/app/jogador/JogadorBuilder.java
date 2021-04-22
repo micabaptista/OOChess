@@ -35,4 +35,5 @@ public class JogadorBuilder  implements  JogadorBuilderInterface{
     public Jogador build() {
         return new Jogador(username,password,discordUsername);
     }
+    
 }

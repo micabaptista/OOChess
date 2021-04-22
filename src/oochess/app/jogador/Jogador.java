@@ -1,6 +1,8 @@
 package oochess.app.jogador;
 
 import oochess.app.desafio.Desafio;
+import oochess.app.partida.PartidaEspontanea;
+import oochess.app.torneio.Torneio;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,12 +15,18 @@ public class Jogador {
 
     private Map<String, Desafio> desafiosRecebidos;
     private List<Desafio> desafiosCriados;
+    
+    private List<PartidaEspontanea> partidas = new ArrayList<>();
+    private List<Torneio> torneios;
+    
 
     public Jogador(String username, String password, String discordUsername) {
 
         this.username = username;
         this.password = password;
         this.discordUsername = discordUsername;
+        
+        //isto nao pode tar diretamente nos atributos
         this.desafiosRecebidos = new HashMap<>();
         this.desafiosCriados = new ArrayList<>();
     }
@@ -27,7 +35,7 @@ public class Jogador {
         return username;
     }
 
-    protected String getDiscordUsername() {
+    public String getDiscordUsername() {
         return discordUsername;
     }
 
@@ -35,10 +43,11 @@ public class Jogador {
         return password;
     }
 
-    protected int getElo() {
+    public int getElo() {
         return elo;
     }
 
+    //ver se dto
     public List<Desafio> getListaDesafios() {
         return desafiosRecebidos.values()
                 .stream()
@@ -64,9 +73,9 @@ public class Jogador {
         desafiosRecebidos.put(d.getCodigo(), d);
     }
 
-    //nao sei se vai ser usada ou util
+    
     public void removeDesafioRecebido(Desafio d /*ou String*/) {
-        desafiosCriados.add(d);
+    	//nao sei se vai ser usada ou util
     }
 
     @Override
