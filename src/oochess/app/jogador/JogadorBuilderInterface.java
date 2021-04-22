@@ -9,5 +9,5 @@ public interface JogadorBuilderInterface {
     public JogadorBuilder withDiscordUsername(String discordUsername);
 
     public Jogador build();
-
+ 
 }

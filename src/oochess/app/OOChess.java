@@ -14,9 +14,11 @@ import oochess.app.jogador.Jogador;
 public class OOChess {
 
     private CatalogoJogadores catalogoJogadores;
+    //outos catalogos?
 
     public OOChess() {
         this.catalogoJogadores = CatalogoJogadores.getInstance();
+        //outos catalogos?
     }
 
     public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
