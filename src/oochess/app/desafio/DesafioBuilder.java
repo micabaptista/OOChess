@@ -9,14 +9,15 @@ public class DesafioBuilder implements DesafioBuilderInterface {
     private String mensagem;
     private LocalDateTime dataPartida;
     private boolean resposta;
-    
+    private String codigo;
+
     //novos atributos
     private Torneio torneio; //ver se necessario, depende da classe Desafio
     private Jogador jogadorDesafiante;
     private Jogador jogadorDesafiado;
 
-    
-    	//falta metodos para os novos atributos
+
+    //falta metodos para os novos atributos
     @Override
     public DesafioBuilder withMensagem(String mensagem) {
         this.mensagem = mensagem;
@@ -36,7 +37,13 @@ public class DesafioBuilder implements DesafioBuilderInterface {
     }
 
     @Override
+    public DesafioBuilder withCodigo(String codigo) {
+        this.codigo = codigo;
+        return this;
+    }
+
+    @Override
     public Desafio build() {
-        return new Desafio(dataPartida, mensagem, jogadorDesafiante, jogadorDesafiado, torneio ,resposta);
+        return new Desafio(dataPartida, mensagem, jogadorDesafiante, jogadorDesafiado, torneio, resposta);
     }
 }

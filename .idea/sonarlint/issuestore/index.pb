@@ -23,8 +23,6 @@ L
 src/oochess/app/OOChess.java,0/0/00e7c884f9bb52f818d1617050532d2d1d50622f
 n
 >src/oochess/app/facade/handlers/RegistarUtilizadorHandler.java,4/e/4eb6acaf735b00a9db0268a57cfdc93f8f35b7e4
-L
-src/oochess/app/Jogador.java,f/2/f2af1c24ced5a851f582265497a5adeba62f547f
 R
 "src/oochess/app/facade/Sessao.java,4/a/4a084a9f606104fc6a7c4ac2bb337859b1620ab3
 \

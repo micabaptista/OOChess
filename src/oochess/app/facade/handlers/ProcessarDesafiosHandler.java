@@ -4,13 +4,12 @@ import oochess.app.desafio.Desafio;
 import oochess.app.jogador.Jogador;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessarDesafiosHandler {
 
     private Jogador jogadorCurrente;
-    private Desafio desafio;
+    private Desafio desafioCurrente;
 
     public ProcessarDesafiosHandler(Jogador jogador) {
         this.jogadorCurrente = jogador;
@@ -21,12 +20,12 @@ public class ProcessarDesafiosHandler {
     }
 
     public void respondeADesafio(String codigo, boolean resposta) {
-        this.desafio = jogadorCurrente.getDesafio(codigo);
-        desafio.setResposta(resposta);
+        this.desafioCurrente = jogadorCurrente.getDesafio(codigo);
+        desafioCurrente.setResposta(resposta);
     }
 
     public void indicaNovaData(LocalDateTime datahora) {
-        desafio.setDataPartida(datahora);
+        desafioCurrente.setDataPartida(datahora);
     }
 
 }
