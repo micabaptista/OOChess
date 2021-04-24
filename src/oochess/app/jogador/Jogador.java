@@ -1,6 +1,7 @@
 package oochess.app.jogador;
 
 import oochess.app.desafio.Desafio;
+import oochess.app.dtos.DesafioDTO;
 import oochess.app.partida.PartidaEspontanea;
 import oochess.app.torneio.Torneio;
 
@@ -47,11 +48,11 @@ public class Jogador {
         return elo;
     }
 
-    //ver se dto
-    public List<Desafio> getListaDesafios() {
+    public List<DesafioDTO> getListaDesafios() {
         return desafiosRecebidos.values()
                 .stream()
                 .filter(x -> !x.getResposta())
+                .map(u -> new DesafioDTO(u.getCodigo(),u.getMensagem(),u.getDataPartida(),u.getResposta()))
                 .collect(Collectors.toList());
     }
 
