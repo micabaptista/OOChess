@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import oochess.app.OOChess;
+import oochess.app.dtos.JogadorDTO;
 import oochess.app.facade.Sessao;
 import oochess.app.facade.handlers.DesafiarHandler;
 import oochess.app.facade.handlers.ProcessarDesafiosHandler;
@@ -33,7 +34,7 @@ public class ClienteExemplo {
 			
 			desh.indicaTorneio("Torneio Xadrez da CADI");
 
-			List<Jogador> jogadoresEElos = desh.indicaDeltaElo(50);
+			List<JogadorDTO> jogadoresEElos = desh.indicaDeltaElo(50);
 			
 			desh.indicaJogador("Maribel");
 			codigoDaPartida = desh.indicaDetalhes(LocalDateTime.now().plusDays(1), "Amanhã vou finalmente derrotar-te!");

@@ -1,17 +1,12 @@
 
 A
-java:S1172",Remove this unused method parameter "delta".(ñøô
-M
-java:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
-M
-java:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
-M
-java:S1135	"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
-M
-java:S1135"2Complete the task associated to this TODO comment.(–…§ÿÿÿÿÿ
-A
-java:S1172"&Remove these unused method parameters.(³ì¶ûûÿÿÿÿ
-A
-java:S1168"+Return an empty collection instead of null.(¥¹ï
-M
-java:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+java:S1172+"&Remove these unused method parameters.(³ì¶ûûÿÿÿÿ
+
+java:S1450"_Remove the "jogadorDesafiado" field and declare it as a local variable in the relevant methods.(Í¤şíúÿÿÿÿ8ÎÁ‰‚/
+s
+java:S1450"QRemove the "tr" field and declare it as a local variable in the relevant methods.(àĞœúÿÿÿÿ8ÎÁ‰‚/
+V
+java:S1068"4Remove this unused "jogadorDesafiado" private field.(Í¤şíúÿÿÿÿ8ÎÁ‰‚/
+H
+java:S1068"&Remove this unused "tr" private field.(àĞœúÿÿÿÿ8ÎÁ‰‚/
+]	java:S1250"<This block of commented-out lines of code should be removed.(ìáÎÕúÿÿÿÿ8ÎÁ‰‚/
