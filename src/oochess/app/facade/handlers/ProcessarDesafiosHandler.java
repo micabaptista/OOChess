@@ -1,6 +1,7 @@
 package oochess.app.facade.handlers;
 
 import oochess.app.desafio.Desafio;
+import oochess.app.dtos.DesafioDTO;
 import oochess.app.jogador.Jogador;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class ProcessarDesafiosHandler {
         this.jogadorCurrente = jogador;
     }
 
-    public List<Desafio> consultarDesafiosPendentes() {
+    public List<DesafioDTO> consultarDesafiosPendentes() {
         return jogadorCurrente.getListaDesafios();
     }
 
