@@ -1,6 +1,7 @@
 package oochess.app.facade.handlers;
 
 import oochess.app.desafio.Desafio;
+import oochess.app.dtos.DesafioDTO;
 import oochess.app.jogador.Jogador;
 
 import java.time.LocalDateTime;
@@ -9,24 +10,24 @@ import java.util.List;
 
 public class ProcessarDesafiosHandler {
 
-    private Jogador jogadorCurrente;
-    private Desafio desafio;
+    private Jogador jogadorCorrente;
+    private Desafio desafioCorrente;
 
     public ProcessarDesafiosHandler(Jogador jogador) {
-        this.jogadorCurrente = jogador;
+        this.jogadorCorrente = jogador;
     }
 
-    public List<Desafio> consultarDesafiosPendentes() {
-        return jogadorCurrente.getListaDesafios();
+    public List<DesafioDTO> consultarDesafiosPendentes() {
+        return jogadorCorrente.getListaDesafios();
     }
 
     public void respondeADesafio(String codigo, boolean resposta) {
-        this.desafio = jogadorCurrente.getDesafio(codigo);
-        desafio.setResposta(resposta);
+        this.desafioCorrente = jogadorCorrente.getDesafio(codigo);
+        desafioCorrente.setResposta(resposta);
     }
 
     public void indicaNovaData(LocalDateTime datahora) {
-        desafio.setDataPartida(datahora);
+        desafioCorrente.setDataPartida(datahora);
     }
 
 }

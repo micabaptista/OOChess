@@ -8,7 +8,7 @@ public abstract class Partida {
 	
 	
 	protected Partida() {
-		this.codigo = new RandomString(8).nextString();
+		this.codigo = new RandomString().nextString();
 	}
 	
 	protected void setResultado(String resultado) {

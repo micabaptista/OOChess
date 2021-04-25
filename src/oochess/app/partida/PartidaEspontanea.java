@@ -6,7 +6,7 @@ import oochess.app.jogador.Jogador;
 
 public class PartidaEspontanea extends Partida {
 	private Jogador j1;
-	private Jogador j2; //ou string para para user nao sei
+	private Jogador j2; 
 	private LocalDateTime data;
 	 
 	public PartidaEspontanea(LocalDateTime data, Jogador j1, Jogador j2) {

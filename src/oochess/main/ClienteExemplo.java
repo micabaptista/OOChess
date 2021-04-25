@@ -32,7 +32,7 @@ public class ClienteExemplo {
 			
 			desh.indicaTorneio("Torneio Xadrez da CADI");
 
-			List<Object> jogadoresEElos = desh.indicaDeltaElo(50);
+			List<JogadorDto> jogadoresEElos = desh.indicaDeltaElo(50);
 			
 			desh.indicaJogador("Maribel");
 			codigoDaPartida = desh.indicaDetalhes(LocalDateTime.now().plusDays(1), "Amanhã vou finalmente derrotar-te!");
@@ -69,7 +69,7 @@ public class ClienteExemplo {
 		talvezOutraSessao.ifPresent( (Sessao s) -> {
 			RegistarResultadoHandler rh = s.getRegistarResultadoDePartida();
 			rh.indicaDesafio(codigoDaPartida);
-			double novoEloDaMaribel = rh.indicarResultado("VITORIA"); // Poderia ser também EMPATE
+			double novoEloDaMaribel = rh.indicarResultado("VITORIA");
 			System.out.println("[NovoElo] Maribel: " + novoEloDaMaribel);
 			
 		});
