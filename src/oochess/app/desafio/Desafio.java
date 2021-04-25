@@ -7,29 +7,26 @@ import oochess.app.extras.RandomString;
 import oochess.app.jogador.Jogador;
 import oochess.app.torneio.Torneio;
 
+//TALVEZ JOGADOR DTO
 public class Desafio {
 	private Jogador desafiado;
 	private Jogador desafiante;
-	//provavelmente retirar
-	private /*static???*/final int randomLength = 8;
-	private RandomString rd = new RandomString(randomLength);
-	private Torneio torneio; // pode começar a null???
-	
+	private RandomString rd = new RandomString(); 
+	private Torneio torneio = null; 
     private String codigo;
-    private String mensagem; //nao sei se era para tar em atributo
+    private String mensagem; 
     private LocalDateTime dataPartida;
     private boolean resposta;
 
-    public Desafio(  LocalDateTime dataPartida, String mensagem, Jogador jogadorDesafiante , Jogador jogadorDesafiado , Torneio torneio , boolean resposta) {
+    
+    ///builder
+    public Desafio(  LocalDateTime dataPartida, String mensagem, Jogador jogadorDesafiante , Jogador jogadorDesafiado , Torneio torneio ) {
         this.codigo = rd.nextString();
         this.mensagem = mensagem;
         this.dataPartida = dataPartida;
         this.desafiado = jogadorDesafiado;
 		this.desafiante = jogadorDesafiante;
-		//verificar o null ou se setter
 		this.torneio = torneio;
-       // nao é melhor deixar isto para o setter 
-        this.resposta = resposta;
 
     }
 
@@ -38,12 +35,11 @@ public class Desafio {
         return codigo;
     }
     
-    //nao sei se é preciso
+    
     public String getMensagem() {
         return mensagem;
     }
     
-    //nao sei se é preciso
     public LocalDateTime getDataPartida() {
         return dataPartida;
     }
@@ -59,4 +55,9 @@ public class Desafio {
     public void setDataPartida(LocalDateTime dataPartida) {
         this.dataPartida = dataPartida;
     }
+    
+    public Torneio getTorneio() {
+    	return torneio;
+    }
+    
 }

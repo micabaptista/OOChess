@@ -9,24 +9,24 @@ import java.util.List;
 
 public class ProcessarDesafiosHandler {
 
-    private Jogador jogadorCurrente;
-    private Desafio desafioCurrente;
+    private Jogador jogadorCorrente;
+    private Desafio desafioCorrente;
 
     public ProcessarDesafiosHandler(Jogador jogador) {
-        this.jogadorCurrente = jogador;
+        this.jogadorCorrente = jogador;
     }
 
     public List<DesafioDTO> consultarDesafiosPendentes() {
-        return jogadorCurrente.getListaDesafios();
+        return jogadorCorrente.getListaDesafios();
     }
 
     public void respondeADesafio(String codigo, boolean resposta) {
-        this.desafioCurrente = jogadorCurrente.getDesafio(codigo);
-        desafioCurrente.setResposta(resposta);
+        this.desafioCorrente = jogadorCorrente.getDesafio(codigo);
+        desafioCorrente.setResposta(resposta);
     }
 
     public void indicaNovaData(LocalDateTime datahora) {
-        desafioCurrente.setDataPartida(datahora);
+        desafioCorrente.setDataPartida(datahora);
     }
 
 }

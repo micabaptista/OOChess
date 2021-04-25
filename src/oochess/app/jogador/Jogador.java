@@ -14,22 +14,18 @@ public class Jogador {
     private String discordUsername;
     private int elo;
 
-    private Map<String, Desafio> desafiosRecebidos;
-    private List<Desafio> desafiosCriados;
+    private final Map<String, Desafio> desafiosRecebidos =  new HashMap<>();
+    private final List<Desafio> desafiosCriados = new ArrayList<>();
     
-    private List<PartidaEspontanea> partidas = new ArrayList<>();
-    private List<Torneio> torneios;
+    private final List<PartidaEspontanea> partidas = new ArrayList<>(); 
+    private final List<Torneio> torneios = new ArrayList<>();
     
 
     public Jogador(String username, String password, String discordUsername) {
-
         this.username = username;
         this.password = password;
         this.discordUsername = discordUsername;
-        
-        //isto nao pode tar diretamente nos atributos
-        this.desafiosRecebidos = new HashMap<>();
-        this.desafiosCriados = new ArrayList<>();
+        //falta ver elo
     }
 
     public String getUsername() {
@@ -48,6 +44,7 @@ public class Jogador {
         return elo;
     }
 
+    //ver se devolver o codigo é boa ideia associar com o get desafio
     public List<DesafioDTO> getListaDesafios() {
         return desafiosRecebidos.values()
                 .stream()
@@ -72,11 +69,6 @@ public class Jogador {
 
     public void adicionaDesafioRecebido(Desafio d) {
         desafiosRecebidos.put(d.getCodigo(), d);
-    }
-
-    
-    public void removeDesafioRecebido(Desafio d /*ou String*/) {
-    	//nao sei se vai ser usada ou util
     }
 
     @Override

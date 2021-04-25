@@ -9,10 +9,9 @@ public class DesafioBuilder implements DesafioBuilderInterface {
     private String mensagem;
     private LocalDateTime dataPartida;
     private boolean resposta;
-    private String codigo;
-
-    //novos atributos
-    private Torneio torneio; //ver se necessario, depende da classe Desafio
+    
+   
+    private Torneio torneio; 
     private Jogador jogadorDesafiante;
     private Jogador jogadorDesafiado;
 
@@ -29,12 +28,25 @@ public class DesafioBuilder implements DesafioBuilderInterface {
         this.dataPartida = dataPartida;
         return this;
     }
-
-    @Override
-    public DesafioBuilder withResposta(boolean resposta) {
-        this.resposta = resposta;
+    
+    @Override // este é opcinoal
+    public DesafioBuilder withTorneio(Torneio torneio) {
+        this.torneio = torneio;
         return this;
     }
+    
+    @Override // este é opcinoal
+    public DesafioBuilder withDesafiante(Jogador desafiante) {
+        this.jogadorDesafiante = desafiante;
+        return this;
+    }
+    
+    @Override // este é opcinoal
+    public DesafioBuilder withDesafiado(Jogador desafiado) {
+        this.jogadorDesafiado = desafiado;
+        return this;
+    }
+   
 
     @Override
     public DesafioBuilder withCodigo(String codigo) {
@@ -44,6 +56,6 @@ public class DesafioBuilder implements DesafioBuilderInterface {
 
     @Override
     public Desafio build() {
-        return new Desafio(dataPartida, mensagem, jogadorDesafiante, jogadorDesafiado, torneio, resposta);
+        return new Desafio(dataPartida, mensagem, jogadorDesafiante, jogadorDesafiado, torneio);
     }
 }

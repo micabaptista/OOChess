@@ -21,8 +21,9 @@ public class RandomString {
         this.buf = new char[length];
     }
     
-	public RandomString(int length) {
-		this(length, alphanum);
+	public RandomString() {
+		//8 é o size default
+		this(8, alphanum);
 	}
 
 	public String nextString() {

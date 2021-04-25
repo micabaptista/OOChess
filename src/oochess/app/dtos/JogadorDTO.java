@@ -4,11 +4,14 @@ public class JogadorDTO {
 
     private String username;
     private String discordUsername;
+    private int elo;
 
 
-    public JogadorDTO(String username, String discordUsername) {
+    public JogadorDTO(String username, String discordUsername, int elo) {
         this.username = username;
         this.discordUsername = discordUsername;
+        this.elo = elo;
+
     }
 
     public String getUsername() {
@@ -17,5 +20,9 @@ public class JogadorDTO {
 
     public String getDiscordUsername() {
         return discordUsername;
+    }
+
+    public int getElo() {
+        return elo;
     }
 }

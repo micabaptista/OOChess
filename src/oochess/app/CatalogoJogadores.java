@@ -1,11 +1,13 @@
 package oochess.app;
 
+import oochess.app.dtos.JogadorDTO;
 import oochess.app.jogador.Jogador;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CatalogoJogadores {
 
@@ -24,7 +26,6 @@ public class CatalogoJogadores {
         return instance;
     }
 
-    //ver se dto ou private 
     public Jogador getJogador(String user) {
         return catalogoJogadores.get(user);
     }
@@ -37,17 +38,16 @@ public class CatalogoJogadores {
         return catalogoJogadores.containsKey(username);
     }
     
-    public List<Jogador> getJogadoresDelta(int elo, int delta) {
+    public List<JogadorDTO> getJogadoresDelta(int elo, int delta) {
 		List<Jogador> listaDelta = new ArrayList<>();    
-		// ver se da com stream
+
 		catalogoJogadores.forEach((k, v) -> {
             if(v.eloNecessario(elo, delta)) {
             	listaDelta.add(catalogoJogadores.get(k));
             }
-            
         });
 		
-		return listaDelta;
+		return listaDelta.stream().map(u -> new JogadorDTO(u.getUsername(), u.getDiscordUsername(), u.getElo())).collect(Collectors.toList());
 	}
     
 }
