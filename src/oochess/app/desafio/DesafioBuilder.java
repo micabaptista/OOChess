@@ -15,8 +15,8 @@ public class DesafioBuilder implements DesafioBuilderInterface {
     private Jogador jogadorDesafiante;
     private Jogador jogadorDesafiado;
 
-    
-    	//falta metodos para os novos atributos
+
+    //falta metodos para os novos atributos
     @Override
     public DesafioBuilder withMensagem(String mensagem) {
         this.mensagem = mensagem;
@@ -47,6 +47,12 @@ public class DesafioBuilder implements DesafioBuilderInterface {
         return this;
     }
    
+
+    @Override
+    public DesafioBuilder withCodigo(String codigo) {
+        this.codigo = codigo;
+        return this;
+    }
 
     @Override
     public Desafio build() {

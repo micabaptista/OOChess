@@ -5,7 +5,7 @@ import oochess.app.torneio.Torneio;
 import java.time.LocalDateTime;
 
 public class DesafioDTO {
-//VER UTILIADE
+
     private String codigo;
     private String mensagem;
     private LocalDateTime dataPartida;

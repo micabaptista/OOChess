@@ -5,7 +5,6 @@ import oochess.app.dtos.DesafioDTO;
 import oochess.app.jogador.Jogador;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessarDesafiosHandler {
