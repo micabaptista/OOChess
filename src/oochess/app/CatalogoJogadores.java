@@ -38,11 +38,11 @@ public class CatalogoJogadores {
         return catalogoJogadores.containsKey(username);
     }
     
-    public List<JogadorDTO> getJogadoresDelta(int elo, int delta) {
+    public List<JogadorDTO> getJogadoresDelta(double d, int delta) {
 		List<Jogador> listaDelta = new ArrayList<>();    
 
 		catalogoJogadores.forEach((k, v) -> {
-            if(v.eloNecessario(elo, delta)) {
+            if(v.eloNecessario(d, delta)) {
             	listaDelta.add(catalogoJogadores.get(k));
             }
         });

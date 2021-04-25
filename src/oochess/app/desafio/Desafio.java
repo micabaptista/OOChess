@@ -59,5 +59,10 @@ public class Desafio {
     public Torneio getTorneio() {
     	return torneio;
     }
+
+
+	public Jogador getOponente() {
+		return desafiado;
+	}
     
 }

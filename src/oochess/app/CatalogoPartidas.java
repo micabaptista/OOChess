@@ -9,7 +9,7 @@ import java.util.Map;
 public class CatalogoPartidas {
 
     private static CatalogoPartidas instance = null;
-    private Map<Integer, Partida> catalogoPartidas;
+    private Map<String, Partida> catalogoPartidas;
 
     private CatalogoPartidas() {
         catalogoPartidas = new HashMap<>();
@@ -29,7 +29,7 @@ public class CatalogoPartidas {
     }
 
     public Partida getPartida(String cod) {
-        return null; //TODO
+    	return catalogoPartidas.get(cod); //TODO
     }
 
 

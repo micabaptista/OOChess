@@ -1,6 +1,7 @@
 package oochess.app.partida;
 
 import oochess.app.extras.RandomString;
+import oochess.app.jogador.Jogador;
 
 public abstract class Partida {
 	private String codigo;
@@ -11,7 +12,7 @@ public abstract class Partida {
 		this.codigo = new RandomString().nextString();
 	}
 	
-	protected void setResultado(String resultado) {
+	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
 	
@@ -22,6 +23,13 @@ public abstract class Partida {
 	protected String getResultado() {
 		return this.resultado;
 	}
+	
+	public abstract boolean isEspontanea();
+
+	public abstract Jogador getOponente();
+	
+	
+	
 }
 
 //falta implemetar classe para partida torneio

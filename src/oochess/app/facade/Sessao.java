@@ -16,7 +16,9 @@ public class Sessao {
 	}
 
 	public RegistarResultadoHandler getRegistarResultadoDePartida() {
-		return new RegistarResultadoHandler(); // TODO
+		
+		//return new RegistarResultadoHandler(); // TODO
+		return null;
 	}
 
 	public ProcessarDesafiosHandler getProcessarDesafios() {

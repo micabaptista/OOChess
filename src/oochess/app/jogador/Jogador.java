@@ -12,7 +12,7 @@ public class Jogador {
     private String username;
     private String password;
     private String discordUsername;
-    private int elo;
+    private double elo;
 
     private final Map<String, Desafio> desafiosRecebidos =  new HashMap<>();
     private final List<Desafio> desafiosCriados = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Jogador {
         return password;
     }
 
-    public int getElo() {
+    public double getElo() {
         return elo;
     }
 
@@ -58,9 +58,12 @@ public class Jogador {
         return desafiosRecebidos.get(codigo);
     }
 
+    public void setElo(double elo) {
+    	this.elo=elo;
+    }
 
-    public boolean eloNecessario(int elo, int delta) {
-        return Math.abs(elo - this.elo) < delta;
+    public boolean eloNecessario(double d, int delta) {
+        return Math.abs(d - this.elo) < delta;
     }
 
     public void adicionaDesafioEnviado(Desafio d) {
