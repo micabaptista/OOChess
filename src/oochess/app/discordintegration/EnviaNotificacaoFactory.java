@@ -21,9 +21,10 @@ public class EnviaNotificacaoFactory {
 		
 		try {
 			Class<EnviaNotificacao> notificadorClass = (Class<EnviaNotificacao>) Class.forName(type); 
-		
+			return notificadorClass.newInstance();
+			
 		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException e1) {
-            return new Calculadora(); //ver se é a padrao
+            return new notificadorNaoSuportado(); 
         } 
 			
 		

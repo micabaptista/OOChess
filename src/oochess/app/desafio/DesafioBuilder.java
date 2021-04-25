@@ -46,13 +46,6 @@ public class DesafioBuilder implements DesafioBuilderInterface {
         this.jogadorDesafiado = desafiado;
         return this;
     }
-   
-
-    @Override
-    public DesafioBuilder withCodigo(String codigo) {
-        this.codigo = codigo;
-        return this;
-    }
 
     @Override
     public Desafio build() {

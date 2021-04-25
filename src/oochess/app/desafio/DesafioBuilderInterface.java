@@ -20,7 +20,7 @@ public interface DesafioBuilderInterface {
 
     public DesafioBuilder withDesafiado(Jogador desafiado);
 
-    public DesafioBuilder withCodigo(String codigo);
+   
 
     public Desafio build();
 
