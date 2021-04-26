@@ -17,7 +17,7 @@ public class MyConfiguration {
 	
 	private MyConfiguration() {
 		try {
-			FileInputStream file = new FileInputStream(new File("src/default.properties"));
+			FileInputStream file = new FileInputStream(new File("src/preferences.properties"));
 			properties.load(file);
 		} catch (FileNotFoundException e) {
             e.printStackTrace();

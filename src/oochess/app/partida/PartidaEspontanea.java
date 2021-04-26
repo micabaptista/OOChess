@@ -5,25 +5,44 @@ import java.time.LocalDateTime;
 import oochess.app.jogador.Jogador;
 
 public class PartidaEspontanea extends Partida {
-	private Jogador jogadorCorrente;
-	private Jogador oponente; 
-	private LocalDateTime data;
-	 
-	public PartidaEspontanea(LocalDateTime data, Jogador j1, Jogador j2) {
-		super();
-		this.data = data;
-		this.jogadorCorrente = j1;
-		this.oponente = j2;
-		
-	}
+    private Jogador jogadorDesafiante;
+    private Jogador jogadorDesafiado;
+    private LocalDateTime data;
 
-	@Override
-	public boolean isEspontanea() {
-		return true;
-	}
+    public PartidaEspontanea(LocalDateTime data, Jogador jogadorDesafiante, Jogador jogadorDesafiado) {
+        super();
+        this.data = data;
+        this.jogadorDesafiante = jogadorDesafiante;
+        this.jogadorDesafiado = jogadorDesafiado;
 
-	@Override
-	public Jogador getOponente() {
-		return oponente;
-	}
+    }
+
+    @Override
+    public boolean isEspontanea() {
+        return true;
+    }
+
+    @Override
+    public Jogador getJogadorDesafiado() {
+        return jogadorDesafiado;
+    }
+
+    @Override
+    public Jogador getOtherJogador(Jogador jogador) {
+        if (jogador.equals(jogadorDesafiante)) {
+            return jogadorDesafiado;
+        } else {
+            return jogadorDesafiante;
+        }
+    }
+
+    public Jogador getJogadorDesafiante() {
+        return jogadorDesafiante;
+    }
+
+    @Override
+    public LocalDateTime getData() {
+        return data;
+    }
+
 }

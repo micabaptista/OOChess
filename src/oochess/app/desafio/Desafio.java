@@ -3,47 +3,48 @@ package oochess.app.desafio;
 
 import java.time.LocalDateTime;
 
-import oochess.app.extras.RandomString;
+import oochess.app.extras.RandomCode;
 import oochess.app.jogador.Jogador;
 import oochess.app.torneio.Torneio;
 
 //TALVEZ JOGADOR DTO
 public class Desafio {
-	private Jogador desafiado;
-	private Jogador desafiante;
-	private RandomString rd = new RandomString(); 
-	private Torneio torneio = null; 
+    private Jogador jogadorDesafiado;
+    private Jogador jogadorDesafiante;
+
+    private Torneio torneio = null;
+
     private String codigo;
-    private String mensagem; 
+    private String mensagem;
     private LocalDateTime dataPartida;
     private boolean resposta;
 
-    
+
     ///builder
-    public Desafio(  LocalDateTime dataPartida, String mensagem, Jogador jogadorDesafiante , Jogador jogadorDesafiado , Torneio torneio ) {
-        this.codigo = rd.nextString();
+    public Desafio(LocalDateTime dataPartida, String mensagem, Jogador jogadorDesafiante, Jogador jogadorDesafiado, Torneio torneio) {
+        this.codigo = RandomCode.getInstance().createCode();
         this.mensagem = mensagem;
         this.dataPartida = dataPartida;
-        this.desafiado = jogadorDesafiado;
-		this.desafiante = jogadorDesafiante;
-		this.torneio = torneio;
+        this.jogadorDesafiado = jogadorDesafiado;
+        this.jogadorDesafiante = jogadorDesafiante;
+        this.torneio = torneio;
 
     }
 
 
-	public String getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
-    
-    
+
+
     public String getMensagem() {
         return mensagem;
     }
-    
+
     public LocalDateTime getDataPartida() {
         return dataPartida;
     }
-    
+
     public boolean getResposta() {
         return resposta;
     }
@@ -55,14 +56,16 @@ public class Desafio {
     public void setDataPartida(LocalDateTime dataPartida) {
         this.dataPartida = dataPartida;
     }
-    
+
     public Torneio getTorneio() {
-    	return torneio;
+        return torneio;
     }
 
+    public Jogador getJogadorDesafiado() {
+        return jogadorDesafiado;
+    }
 
-	public Jogador getOponente() {
-		return desafiado;
-	}
-    
+    public Jogador getJogadorDesafiante() {
+        return jogadorDesafiante;
+    }
 }

@@ -1,7 +1,11 @@
 package oochess.app.jogador;
 
+import oochess.app.CatalogoPartidas;
+import oochess.app.OOChess;
 import oochess.app.desafio.Desafio;
 import oochess.app.dtos.DesafioDTO;
+import oochess.app.dtos.PartidaDTO;
+import oochess.app.partida.Partida;
 import oochess.app.partida.PartidaEspontanea;
 import oochess.app.torneio.Torneio;
 
@@ -14,18 +18,20 @@ public class Jogador {
     private String discordUsername;
     private double elo;
 
-    private final Map<String, Desafio> desafiosRecebidos =  new HashMap<>();
+    private final Map<String, Desafio> desafiosRecebidos = new HashMap<>();
     private final List<Desafio> desafiosCriados = new ArrayList<>();
-    
-    private final List<PartidaEspontanea> partidas = new ArrayList<>(); 
-    private final List<Torneio> torneios = new ArrayList<>();
-    
+
+    private final List<Partida> allPartidas = new ArrayList<>();
+    private final List<Torneio> allTorneios = new ArrayList<>();
+    // acho que nao faz sentido pq quando nos criamos uma partida nao estamos a adiciona-la aqui,
+    // e anyway se for preciso bastar usar streams para ir buscar as partidas associadas a um jogador!
+
 
     public Jogador(String username, String password, String discordUsername) {
         this.username = username;
         this.password = password;
         this.discordUsername = discordUsername;
-        //falta ver elo
+        this.elo = OOChess.getStrategy().getInitialElo();
     }
 
     public String getUsername() {
@@ -44,12 +50,19 @@ public class Jogador {
         return elo;
     }
 
-    //ver se devolver o codigo é boa ideia associar com o get desafio
+    public List<PartidaDTO> getLastFivePartidas() {
+        return CatalogoPartidas.getInstance()
+                .getCatalogoPartidas()
+                .stream()
+                .limit(5)
+                .collect(Collectors.toList());
+    }
+
     public List<DesafioDTO> getListaDesafios() {
         return desafiosRecebidos.values()
                 .stream()
                 .filter(x -> !x.getResposta())
-                .map(u -> new DesafioDTO(u.getCodigo(),u.getMensagem(),u.getDataPartida(),u.getResposta()))
+                .map(u -> new DesafioDTO(u.getCodigo(), u.getMensagem(), u.getDataPartida(), u.getResposta()))
                 .collect(Collectors.toList());
     }
 
@@ -59,8 +72,17 @@ public class Jogador {
     }
 
     public void setElo(double elo) {
-    	this.elo=elo;
+        this.elo = elo;
     }
+
+    public void increaseElo(double elo) {
+        this.elo += elo;
+    }
+
+    public void decreaseElo(double elo) {
+        this.elo -= elo;
+    }
+
 
     public boolean eloNecessario(double d, int delta) {
         return Math.abs(d - this.elo) < delta;
@@ -86,11 +108,13 @@ public class Jogador {
 
         Jogador jogador2 = (Jogador) obj;
 
-        return this.username.equals(jogador2.getUsername())
-                && this.password.equals(jogador2.getPassword())
-                && this.discordUsername.equals(jogador2.getDiscordUsername())
-                && this.elo == jogador2.getElo()
-                && this.desafiosRecebidos.equals(jogador2.desafiosRecebidos)
-                && this.desafiosCriados.equals(jogador2.desafiosCriados);
+        return this.username.equals(jogador2.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        return prime * result + Objects.hash(username);
     }
 }

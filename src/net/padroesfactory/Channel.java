@@ -1,7 +1,8 @@
 package net.padroesfactory;
 
 public class Channel {
-	String username;
+	private String username;
+
 	public Channel(String u) {
 		username = u;
 	}

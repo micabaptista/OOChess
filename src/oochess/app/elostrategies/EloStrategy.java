@@ -1,9 +1,11 @@
 package oochess.app.elostrategies;
 
 import oochess.app.jogador.Jogador;
+import oochess.app.partida.Partida;
 
 public interface EloStrategy {
 	
-	public void execute(Jogador j1,Jogador j2,String resultado);
+    void execute(Jogador jogadorCorrente, Partida partida);
 
+    double getInitialElo();
 }
