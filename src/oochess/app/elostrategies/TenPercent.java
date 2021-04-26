@@ -1,29 +1,39 @@
 package oochess.app.elostrategies;
 
 import oochess.app.jogador.Jogador;
+import oochess.app.partida.Partida;
 
 public class TenPercent implements EloStrategy {
 
-public void execute(Jogador j1,Jogador j2,String resultado) {
-		double dirElo;
-		dirElo = (Math.abs(j1.getElo()-j2.getElo())*0.1) +5;
-				
-		if(resultado.equals("VITORIA")) {
-			j1.setElo(j1.getElo()+dirElo);
-			j2.setElo(j2.getElo()-dirElo);
-			
-		}else if(resultado.equals("DERROTA")) {
-			j2.setElo(j2.getElo()+dirElo);
-			j1.setElo(j1.getElo()-dirElo);
-			
-		}else {
-			if(j1.getElo()>j2.getElo()) {
-				j2.setElo(j2.getElo()+(Math.abs(j1.getElo()-j2.getElo())*0.05) );
-				j1.setElo(j1.getElo()-(Math.abs(j1.getElo()-j2.getElo())*0.05) );
-			}else {
-				j1.setElo(j1.getElo()+(Math.abs(j1.getElo()-j2.getElo())*0.05) );
-				j2.setElo(j2.getElo()-(Math.abs(j1.getElo()-j2.getElo())*0.05) );
-			}		
-		}	
-	}
+    private static final double INITIAL_ELO = 50;
+
+
+    public void execute(Jogador jogadorCorrente, Partida partida) {
+        double dirElo;
+        dirElo = (Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.1) + 5;
+
+        if (partida.getResultado().equals("VITORIA")) {
+            jogadorCorrente.setElo(jogadorCorrente.getElo() + dirElo);
+            partida.getOtherJogador(jogadorCorrente).setElo(partida.getOtherJogador(jogadorCorrente).getElo() - dirElo);
+
+        } else if (partida.getResultado().equals("DERROTA")) {
+            partida.getOtherJogador(jogadorCorrente).setElo(partida.getOtherJogador(jogadorCorrente).getElo() + dirElo);
+            jogadorCorrente.setElo(jogadorCorrente.getElo() - dirElo);
+
+        } else {
+            if (jogadorCorrente.getElo() > partida.getOtherJogador(jogadorCorrente).getElo()) {
+                partida.getOtherJogador(jogadorCorrente).setElo(partida.getOtherJogador(jogadorCorrente).getElo() + (Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.05));
+                jogadorCorrente.setElo(jogadorCorrente.getElo() - (Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.05));
+            } else {
+                jogadorCorrente.setElo(jogadorCorrente.getElo() + (Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.05));
+                partida.getOtherJogador(jogadorCorrente).setElo(partida.getOtherJogador(jogadorCorrente).getElo() - (Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.05));
+            }
+        }
+
+    }
+
+    @Override
+    public double getInitialElo() {
+        return INITIAL_ELO;
+    }
 }

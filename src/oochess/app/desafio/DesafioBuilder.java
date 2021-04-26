@@ -8,15 +8,12 @@ import oochess.app.torneio.Torneio;
 public class DesafioBuilder implements DesafioBuilderInterface {
     private String mensagem;
     private LocalDateTime dataPartida;
-    private boolean resposta;
-    
-   
+
     private Torneio torneio; 
     private Jogador jogadorDesafiante;
     private Jogador jogadorDesafiado;
 
 
-    //falta metodos para os novos atributos
     @Override
     public DesafioBuilder withMensagem(String mensagem) {
         this.mensagem = mensagem;
@@ -29,7 +26,7 @@ public class DesafioBuilder implements DesafioBuilderInterface {
         return this;
     }
     
-    @Override // este é opcinoal
+    @Override
     public DesafioBuilder withTorneio(Torneio torneio) {
         this.torneio = torneio;
         return this;

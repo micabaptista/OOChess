@@ -1,19 +1,26 @@
 package oochess.app.elostrategies;
 
 import oochess.app.jogador.Jogador;
+import oochess.app.partida.Partida;
 
 public class ByOne implements EloStrategy {
-	
-	
-	public void execute(Jogador j1,Jogador j2,String resultado) {
+    private static final double INITIAL_ELO = 5;
+    private static final double VALUE_DEFAULT = 1;
 
-		if(resultado.equals("VITORIA")) {
-			j1.setElo(j1.getElo()+1);
-			j2.setElo(j2.getElo()-1);
-			
-		}else if(resultado.equals("DERROTA")) {
-			j2.setElo(j2.getElo()+1);
-			j1.setElo(j1.getElo()-1);	
-		}		
-	}		
+    public void execute(Jogador jogadorCorrente, Partida partida) {
+
+        if (partida.getResultado().equals("VITORIA")) {
+            jogadorCorrente.increaseElo(VALUE_DEFAULT);
+            partida.getOtherJogador(jogadorCorrente).decreaseElo(VALUE_DEFAULT);
+
+        } else if (partida.getResultado().equals("DERROTA")) {
+            jogadorCorrente.decreaseElo(VALUE_DEFAULT);
+            partida.getOtherJogador(jogadorCorrente).decreaseElo(VALUE_DEFAULT);
+        }
+    }
+
+    @Override
+    public double getInitialElo() {
+        return INITIAL_ELO;
+    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import oochess.app.OOChess;
+import oochess.app.dtos.DesafioDTO;
 import oochess.app.dtos.JogadorDTO;
 import oochess.app.facade.Sessao;
 import oochess.app.facade.handlers.DesafiarHandler;
@@ -34,7 +35,7 @@ public class ClienteExemplo {
 
             desh.indicaTorneio("Torneio Xadrez da CADI");
 
-            List<JogadorDTO> jogadoresEElos = desh.indicaDeltaElo(50);
+            List<JogadorDTO> jogadoresElos = desh.indicaDeltaElo(50);
 
             desh.indicaJogador("Maribel");
             codigoDaPartida = desh.indicaDetalhes(LocalDateTime.now().plusDays(1), "Amanhã vou finalmente derrotar-te!");
@@ -57,8 +58,8 @@ public class ClienteExemplo {
         talvezOutraSessao.ifPresent((Sessao s) -> {
             ProcessarDesafiosHandler pdh = s.getProcessarDesafios();
             boolean disponivel = true;
-            for (Object o : pdh.consultarDesafiosPendentes()) {
-                pdh.respondeADesafio("o.getCodigo()???", disponivel);
+            for (DesafioDTO desafioDTO : pdh.consultarDesafiosPendentes()) {
+                pdh.respondeADesafio(desafioDTO.getCodigo(), disponivel);
                 if (!disponivel) {
                     pdh.indicaNovaData(LocalDateTime.now().plusDays(2));
                 }

@@ -2,6 +2,7 @@ package oochess.test;
 
 import oochess.app.desafio.Desafio;
 import oochess.app.desafio.DesafioBuilder;
+import oochess.app.dtos.DesafioDTO;
 import oochess.app.facade.handlers.ProcessarDesafiosHandler;
 import oochess.app.jogador.Jogador;
 import org.junit.Assert;
@@ -22,7 +23,6 @@ public class ProcessarDesafiosHandlerTest {
     public void setUp() {
         jogador1 = new Jogador("Mike", "mike123", "mikeGamer");
         jogador1.adicionaDesafioRecebido(new DesafioBuilder()
-                .withCodigo("1")
                 .withDataPartida(DATE_TIME)
                 .withMensagem("Boa sorte")
                 .build());
@@ -33,10 +33,9 @@ public class ProcessarDesafiosHandlerTest {
 
     @Test
     public void consultarDesafiosTest() {
-        List<Desafio> desafiosPendentes = processarDesafiosHandler.consultarDesafiosPendentes();
+         List<DesafioDTO> desafiosPendentes = processarDesafiosHandler.consultarDesafiosPendentes();
 
         Desafio expected = new DesafioBuilder()
-                .withCodigo("1")
                 .withDataPartida(DATE_TIME)
                 .withMensagem("Boa sorte")
                 .build();
