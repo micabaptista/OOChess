@@ -1,0 +1,15 @@
+
+>
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+F
+java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+i
+java:S3008"SRename this field "INSTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßÑÇ 
+c
+java:S1128"HRemove this unused import 'java.lang.reflect.InvocationTargetException'.(è¾†„øÿÿÿÿ
+Z
+java:S2147"DCombine this catch with the one at line 22, which has the same body.(ï­£Ä
+F
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ

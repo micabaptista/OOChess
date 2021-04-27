@@ -3,18 +3,19 @@ package oochess.app.discordintegration;
 import java.lang.reflect.InvocationTargetException;
 
 public class EnviaNotificacaoFactory {
-	private static EnviaNotificacaoFactory INSTANCE = null;
+	private static EnviaNotificacaoFactory instance = null;
 	
 	private EnviaNotificacaoFactory() {
 	}
-	public static EnviaNotificacaoFactory getINSTANCE() {
-			if (INSTANCE == null) {
-				INSTANCE = new EnviaNotificacaoFactory();
+	public static EnviaNotificacaoFactory getInstance() {
+			if (instance == null) {
+				instance = new EnviaNotificacaoFactory();
 			}
-			return INSTANCE;
+			return instance;
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public EnviaNotificacao getEnviaNotificacao() {
 		String type= MyConfiguration.getINSTANCE().getString("DISCORD_CLASS");
 		
