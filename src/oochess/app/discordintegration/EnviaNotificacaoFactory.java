@@ -1,22 +1,25 @@
 package oochess.app.discordintegration;
 
+import oochess.app.OOChessConfiguration;
+
 import java.lang.reflect.InvocationTargetException;
 
 public class EnviaNotificacaoFactory {
-	private static EnviaNotificacaoFactory INSTANCE = null;
+	private static EnviaNotificacaoFactory instance = null;
 	
 	private EnviaNotificacaoFactory() {
 	}
 	public static EnviaNotificacaoFactory getINSTANCE() {
-			if (INSTANCE == null) {
-				INSTANCE = new EnviaNotificacaoFactory();
+			if (instance == null) {
+				instance = new EnviaNotificacaoFactory();
 			}
-			return INSTANCE;
+			return instance;
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public EnviaNotificacao getEnviaNotificacao() {
-		String type= MyConfiguration.getINSTANCE().getString("DISCORD_CLASS");
+		String type= OOChessConfiguration.getInstance().getString("DISCORD_CLASS");
 		
 		try {
 			Class<EnviaNotificacao> notificadorClass = (Class<EnviaNotificacao>) Class.forName(type); 
@@ -24,7 +27,7 @@ public class EnviaNotificacaoFactory {
 			
 		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException |
                 InvocationTargetException e1) {
-            return new notificadorNaoSuportado(); 
+            return new Discord4JAdapter();
         } 
 			
 		

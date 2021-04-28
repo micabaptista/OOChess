@@ -1,10 +1,10 @@
 package oochess.test;
 
-import oochess.app.desafio.Desafio;
-import oochess.app.desafio.DesafioBuilder;
-import oochess.app.dtos.DesafioDTO;
+import oochess.app.modelo.desafio.Desafio;
+import oochess.app.modelo.desafio.DesafioBuilder;
+import oochess.app.facade.dto.DesafioDTO;
 import oochess.app.facade.handlers.ProcessarDesafiosHandler;
-import oochess.app.jogador.Jogador;
+import oochess.app.modelo.jogador.Jogador;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

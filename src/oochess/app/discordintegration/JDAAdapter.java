@@ -7,13 +7,13 @@ public class JDAAdapter implements EnviaNotificacao{
 
 	@Override
 	public void envia(String token, String user, String msg) {
-		// ver outros param
-		JDAMock c = new JDAMockBuilder().createDefault(token /*ficheiro*/).disableCache(true).setCompression(true).setActivity("Playing chess").build();
-		//verificar message
+		JDAMock c = new JDAMockBuilder()
+                .createDefault(token)
+                .disableCache(true)
+                .setCompression(true)
+                .setActivity("Playing chess")
+                .build();
+
 		c.sendMessage(user, msg);
-		
 	}
-
-	
-
 }

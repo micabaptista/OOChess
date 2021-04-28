@@ -3,11 +3,11 @@ package oochess.app;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
-import oochess.app.discordintegration.MyConfiguration;
 import oochess.app.elostrategies.ByOne;
 import oochess.app.elostrategies.EloStrategy;
 import oochess.app.facade.Sessao;
 import oochess.app.facade.handlers.RegistarUtilizadorHandler;
+import oochess.app.modelo.jogador.CatalogoJogadores;
 
 /**
  * Esta é a classe do sistema.
@@ -16,23 +16,12 @@ public class OOChess {
 
     private static EloStrategy strategy;
     private CatalogoJogadores catalogoJogadores;
-    //outos catalogos?
+
 
     public OOChess() {
         this.catalogoJogadores = CatalogoJogadores.getInstance();
-        setSTRATEGY();
-        //outos catalogos?
-
+        setStrategy();
     }
-
-    public static EloStrategy getStrategy() {
-        return strategy;
-    }
-
-    public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
-        return new RegistarUtilizadorHandler(catalogoJogadores);
-    }
-
 
     /**
      * Returns an optional Session representing the authenticated user.
@@ -51,18 +40,29 @@ public class OOChess {
                 new Sessao(catalogoJogadores.getJogador(username))) : Optional.empty();
     }
 
+
+    public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
+        return new RegistarUtilizadorHandler();
+    }
+
+    /**
+     * S
+     *
+     */
     @SuppressWarnings("unchecked")
-    private static void setSTRATEGY() {
-        String estrategia = MyConfiguration.getINSTANCE().getString("STRATEGY_CLASS");
+    private static void setStrategy() {
+        String estrategia = OOChessConfiguration.getInstance().getString("STRATEGY_CLASS");
         try {
             Class<EloStrategy> estrategiaClass = (Class<EloStrategy>) Class.forName(estrategia);
             strategy = estrategiaClass.getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException |
                 InvocationTargetException e1) {
-            //Default
             strategy = new ByOne();
         }
+    }
 
+    public static EloStrategy getStrategy() {
+        return strategy;
     }
 
 }
