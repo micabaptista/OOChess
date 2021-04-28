@@ -11,7 +11,7 @@ public class TenPercent implements EloStrategy {
         double value_standard = (Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.1) + 5;
         double value_empate = Math.abs(jogadorCorrente.getElo() - partida.getOtherJogador(jogadorCorrente).getElo()) * 0.05;
 
-        switch (partida.getResultado()){
+        switch (partida.getResultado()) {
             case "VITORIA":
                 jogadorCorrente.increaseElo(value_standard);
                 partida.getOtherJogador(jogadorCorrente).decreaseElo(value_standard);
@@ -25,9 +25,10 @@ public class TenPercent implements EloStrategy {
             case "EMPATE":
                 partida.getJogadorHighElo().decreaseElo(value_empate);
                 partida.getJogadorLowElo().increaseElo(value_empate);
+                break;
 
             default:
-
+                throw new IllegalArgumentException("O resultado dado não é valido!");
         }
     }
 

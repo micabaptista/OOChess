@@ -61,17 +61,4 @@ public class PartidaEspontanea extends Partida {
         return data;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Partida)) {
-            return false;
-        }
-
-        Partida p = (PartidaEspontanea) o;
-
-        return p.getCodigo().equals(this.getCodigo());
-    }
 }

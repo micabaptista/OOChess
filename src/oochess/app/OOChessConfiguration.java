@@ -32,5 +32,4 @@ public class OOChessConfiguration {
         return properties.getProperty(key);
     }
 
-
 }

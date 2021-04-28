@@ -8,8 +8,6 @@ import oochess.app.modelo.torneio.Torneio;
 public interface DesafioBuilderInterface {
 
 
-    //falta novos atributos
-
     DesafioBuilder withMensagem(String mensagem);
 
     DesafioBuilder withDataPartida(LocalDateTime dataPartida);

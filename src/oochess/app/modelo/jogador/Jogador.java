@@ -20,17 +20,85 @@ public class Jogador {
     private final Map<String, Desafio> desafiosRecebidos = new HashMap<>();
     private final List<Desafio> desafiosCriados = new ArrayList<>();
 
-    private final List<Partida> allPartidas = new ArrayList<>();
-    private final List<Torneio> allTorneios = new ArrayList<>();
-    // acho que nao faz sentido pq quando nos criamos uma partida nao estamos a adiciona-la aqui,
-    // e anyway se for preciso bastar usar streams para ir buscar as partidas associadas a um jogador!
-
-
     public Jogador(String username, String password, String discordUsername) {
         this.username = username;
         this.password = password;
         this.discordUsername = discordUsername;
         this.elo = OOChess.getStrategy().getInitialElo();
+    }
+
+    /**
+     * Get last five matches played by the jogador
+     *
+     * @return list of last five matches played by the jogador
+     * @ensures {@code getLastFivePartidas().size() > -1}
+     */
+    public List<PartidaDTO> getLastFivePartidas() {
+        return CatalogoPartidas.getInstance()
+                .getCatalogoPartida()
+                .stream()
+                .limit(5)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get all desafios that have not yet been accepted
+     *
+     * @return all desafios that have not yet been accepted
+     * @ensures {@code getListaDesafiosPendentes().size() > -1}
+     */
+    public List<Desafio> getListaDesafiosPendentes() {
+        return desafiosRecebidos.values()
+                .stream()
+                .filter(x -> !x.getResposta())
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param codigo code
+     * @return desafio with the given code.
+     */
+    public Desafio getDesafio(String codigo) {
+        return desafiosRecebidos.get(codigo);
+    }
+
+    /**
+     * Increase elo ranking with the given elo
+     *
+     * @param elo value which will be increased
+     * @requires {@code elo > 0}
+     */
+    public void increaseElo(double elo) {
+        this.elo += elo;
+    }
+
+    /**
+     * Decrease elo ranking with the given elo
+     *
+     * @param elo value which will be increased
+     * @requires {@code elo > 0}
+     */
+    public void decreaseElo(double elo) {
+        this.elo -= elo;
+    }
+
+    /**
+     * Check if the difference between elo is valid
+     *
+     * @param elo   elo from another jogador
+     * @param delta max difference of elo
+     * @return true if the difference between the players is less than delta
+     */
+    boolean isValidDifferenceElo(double elo, int delta) {
+        return Math.abs(elo - this.elo) < delta;
+    }
+
+    public void adicionaDesafioEnviado(Desafio d) {
+        desafiosCriados.add(d);
+    }
+
+    public void adicionaDesafioRecebido(Desafio d) {
+        desafiosRecebidos.put(d.getCodigo(), d);
     }
 
     public String getUsername() {
@@ -47,51 +115,6 @@ public class Jogador {
 
     public double getElo() {
         return elo;
-    }
-
-    public List<PartidaDTO> getLastFivePartidas() {
-        return CatalogoPartidas.getInstance()
-                .getCatalogoPartida()
-                .stream()
-                .limit(5)
-                .collect(Collectors.toList());
-    }
-
-    public List<Desafio> getListaDesafiosPendentes() {
-        return desafiosRecebidos.values()
-                .stream()
-                .filter(x -> !x.getResposta())
-                .collect(Collectors.toList());
-    }
-
-
-    public Desafio getDesafio(String codigo) {
-        return desafiosRecebidos.get(codigo);
-    }
-
-    public void setElo(double elo) {
-        this.elo = elo;
-    }
-
-    public void increaseElo(double elo) {
-        this.elo += elo;
-    }
-
-    public void decreaseElo(double elo) {
-        this.elo -= elo;
-    }
-
-
-    public boolean eloNecessario(double d, int delta) {
-        return Math.abs(d - this.elo) < delta;
-    }
-
-    public void adicionaDesafioEnviado(Desafio d) {
-        desafiosCriados.add(d);
-    }
-
-    public void adicionaDesafioRecebido(Desafio d) {
-        desafiosRecebidos.put(d.getCodigo(), d);
     }
 
     @Override
