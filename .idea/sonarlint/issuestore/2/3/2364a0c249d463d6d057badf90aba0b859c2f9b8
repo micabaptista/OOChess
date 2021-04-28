@@ -1,5 +1,9 @@
 
 T
+<<<<<<< HEAD
 java:S1481&"2Remove this unused "jogadoresElos" local variable.(ÿë‰ÿûÿÿÿÿ8·½½ø/
 U
 java:S1128"8Remove this unused import 'oochess.app.jogador.Jogador'.(‚ú¹8·½½ø/
+=======
+java:S1481%"2Remove this unused "jogadoresElos" local variable.(ÿë‰ÿûÿÿÿÿ8·½½ø/
+>>>>>>> update_structure

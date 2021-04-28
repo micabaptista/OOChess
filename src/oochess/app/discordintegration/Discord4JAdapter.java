@@ -10,9 +10,5 @@ public class Discord4JAdapter implements EnviaNotificacao {
 		Discord4JMock c = new Discord4JMock(token);
 		Channel canalDoDestinatario = c.getChannel(user);
 		canalDoDestinatario.sendMessage(msg);
-		
 	}
-
-	
-
 }

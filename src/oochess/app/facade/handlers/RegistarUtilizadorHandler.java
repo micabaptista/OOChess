@@ -1,25 +1,19 @@
 package oochess.app.facade.handlers;
 
-import oochess.app.CatalogoJogadores;
-import oochess.app.jogador.Jogador;
-import oochess.app.jogador.JogadorBuilder;
-
-import java.util.Map;
+import oochess.app.modelo.jogador.CatalogoJogadores;
+import oochess.app.modelo.jogador.Jogador;
+import oochess.app.modelo.jogador.JogadorBuilder;
 
 public class RegistarUtilizadorHandler {
 
-    private final CatalogoJogadores catalogoJogadores;
-
-    public RegistarUtilizadorHandler(CatalogoJogadores catalogoJogadores) {
-        this.catalogoJogadores = catalogoJogadores;
-    }
+    private final CatalogoJogadores catalogoJogadores = CatalogoJogadores.getInstance();
 
     /**
      * Regista um utilizador normal.
      *
-     * @param discordUsername username do Discord
      * @param username        username no OOChess
      * @param password        password no OOChess
+     * @param discordUsername username do Discord
      * @ensures existe um utilizador com esse username
      */
     public void registarUtilizador(String username, String password, String discordUsername) {

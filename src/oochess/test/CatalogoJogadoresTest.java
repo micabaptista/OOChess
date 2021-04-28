@@ -1,7 +1,8 @@
 package oochess.test;
 
-import oochess.app.CatalogoJogadores;
-import oochess.app.jogador.Jogador;
+import oochess.app.modelo.jogador.CatalogoJogadores;
+import oochess.app.modelo.jogador.Jogador;
+import oochess.app.modelo.jogador.JogadorBuilder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +13,13 @@ public class CatalogoJogadoresTest {
     @Before
     public void setUp() {
         catalogoJogadores = CatalogoJogadores.getInstance();
-        Jogador jogador = new Jogador("mike", "mike123", "mikeGamer");
-        catalogoJogadores.putJogador(jogador);
+        Jogador jogador = new JogadorBuilder()
+                .withUsername("mike")
+                .withPassword("mike123")
+                .withDiscordUsername("mikeGamer")
+                .build();
 
+        catalogoJogadores.putJogador(jogador);
     }
 
     @Test

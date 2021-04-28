@@ -1,7 +1,7 @@
 package oochess.app.elostrategies;
 
-import oochess.app.jogador.Jogador;
-import oochess.app.partida.Partida;
+import oochess.app.modelo.jogador.Jogador;
+import oochess.app.modelo.partida.Partida;
 
 public class ByOne implements EloStrategy {
     private static final double INITIAL_ELO = 5;

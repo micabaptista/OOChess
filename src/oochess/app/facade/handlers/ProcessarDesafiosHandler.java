@@ -1,14 +1,15 @@
 package oochess.app.facade.handlers;
 
-import oochess.app.CatalogoPartidas;
-import oochess.app.desafio.Desafio;
-import oochess.app.dtos.DesafioDTO;
-import oochess.app.jogador.Jogador;
-import oochess.app.partida.Partida;
-import oochess.app.partida.PartidaDesafio;
+import oochess.app.modelo.partida.CatalogoPartidas;
+import oochess.app.modelo.desafio.Desafio;
+import oochess.app.facade.dto.DesafioDTO;
+import oochess.app.modelo.jogador.Jogador;
+import oochess.app.modelo.partida.Partida;
+import oochess.app.modelo.partida.PartidaDesafio;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProcessarDesafiosHandler {
 
@@ -20,7 +21,11 @@ public class ProcessarDesafiosHandler {
     }
 
     public List<DesafioDTO> consultarDesafiosPendentes() {
-        return jogadorCorrente.getListaDesafios();
+        return jogadorCorrente
+                .getListaDesafiosPendentes()
+                .stream()
+                .map(u -> new DesafioDTO(u.getCodigo(), u.getMensagem(), u.getDataPartida()))
+                .collect(Collectors.toList());
     }
 
     public void respondeADesafio(String codigo, boolean resposta) {
@@ -29,9 +34,9 @@ public class ProcessarDesafiosHandler {
         createPartida();
     }
 
-    private void createPartida(){
-        Partida newPartida = new PartidaDesafio(desafioCorrente);
-        CatalogoPartidas.getInstance().addPartida(newPartida);
+    private void createPartida() {
+        CatalogoPartidas.getInstance()
+                .addPartida(new PartidaDesafio(desafioCorrente));
     }
 
     public void indicaNovaData(LocalDateTime datahora) {
