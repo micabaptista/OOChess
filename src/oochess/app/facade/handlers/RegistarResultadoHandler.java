@@ -3,13 +3,13 @@ package oochess.app.facade.handlers;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import oochess.app.CatalogoJogadores;
-import oochess.app.CatalogoPartidas;
+import oochess.app.modelo.jogador.CatalogoJogadores;
+import oochess.app.modelo.partida.CatalogoPartidas;
 import oochess.app.OOChess;
-import oochess.app.dtos.PartidaDTO;
-import oochess.app.jogador.Jogador;
-import oochess.app.partida.Partida;
-import oochess.app.partida.PartidaEspontanea;
+import oochess.app.facade.dto.PartidaDTO;
+import oochess.app.modelo.jogador.Jogador;
+import oochess.app.modelo.partida.Partida;
+import oochess.app.modelo.partida.PartidaEspontanea;
 
 
 public class RegistarResultadoHandler {
@@ -29,7 +29,6 @@ public class RegistarResultadoHandler {
                 .ifPresent(x -> this.partida = x);
 
     }
-
 
     public List<PartidaDTO> indicaPartidaEspontanea() {
         return corrente.getLastFivePartidas();

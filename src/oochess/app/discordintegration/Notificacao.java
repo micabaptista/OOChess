@@ -1,6 +1,7 @@
 package oochess.app.discordintegration;
 
-import oochess.app.jogador.Jogador;
+
+import oochess.app.modelo.jogador.Jogador;
 
 import java.time.LocalDateTime;
 

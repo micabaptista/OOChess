@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import oochess.app.OOChess;
-import oochess.app.dtos.DesafioDTO;
-import oochess.app.dtos.JogadorDTO;
+import oochess.app.facade.dto.DesafioDTO;
+import oochess.app.facade.dto.JogadorDTO;
 import oochess.app.facade.Sessao;
 import oochess.app.facade.handlers.DesafiarHandler;
 import oochess.app.facade.handlers.ProcessarDesafiosHandler;
 import oochess.app.facade.handlers.RegistarResultadoHandler;
 import oochess.app.facade.handlers.RegistarUtilizadorHandler;
-import oochess.app.jogador.Jogador;
+import oochess.app.modelo.jogador.Jogador;
 
 public class ClienteExemplo {
 
@@ -36,6 +36,10 @@ public class ClienteExemplo {
             desh.indicaTorneio("Torneio Xadrez da CADI");
 
             List<JogadorDTO> jogadoresElos = desh.indicaDeltaElo(50);
+
+            for (JogadorDTO jogadorDTO : jogadoresElos) {
+                System.out.println(jogadorDTO.getUsername() + ": " + jogadorDTO.getElo());
+            }
 
             desh.indicaJogador("Maribel");
             codigoDaPartida = desh.indicaDetalhes(LocalDateTime.now().plusDays(1), "Amanhã vou finalmente derrotar-te!");
@@ -72,7 +76,7 @@ public class ClienteExemplo {
         talvezOutraSessao.ifPresent((Sessao s) -> {
             RegistarResultadoHandler rh = s.getRegistarResultadoDePartida();
             rh.indicaDesafio(codigoDaPartida);
-            double novoEloDaMaribel = rh.indicarResultado("VITORIA"); // Poderia ser também EMPATE
+            double novoEloDaMaribel = rh.indicarResultado("VITORIA");
             System.out.println("[NovoElo] Maribel: " + novoEloDaMaribel);
 
         });
