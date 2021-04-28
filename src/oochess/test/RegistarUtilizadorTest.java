@@ -12,6 +12,7 @@ public class RegistarUtilizadorTest {
 
     @Before
     public void setUp() {
+
         OOChess p = new OOChess();
         regHandler = p.getRegistarUtilizadorHandler();
     }

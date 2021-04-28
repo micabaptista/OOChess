@@ -24,32 +24,70 @@ public class RegistarResultadoHandler {
         corrente = jogadorCorrente;
     }
 
+    /**
+     * Update partida
+     *
+     * @param codigoDesafio desafio code
+     * @requires {@code corrente != null}
+     */
     public void indicaDesafio(String codigoDesafio) {
-        catalogoPartidas.getPartida(codigoDesafio)
-                .ifPresent(x -> this.partida = x);
-
+        if (catalogoPartidas.getPartida(codigoDesafio).isPresent()) {
+            this.partida = catalogoPartidas.getPartida(codigoDesafio).get();
+        } else {
+            System.out.println("O código do desafio dado não é válido");
+        }
     }
 
+    /**
+     * Get last five matches played by the jogador corrente
+     *
+     * @return list of last five matches played by the jogador
+     * @ensures {@code indicaPartidaEspontanea().size() > -1}
+     */
     public List<PartidaDTO> indicaPartidaEspontanea() {
         return corrente.getLastFivePartidas();
     }
 
+    /**
+     * Select some details such as data and player name.
+     *
+     * @param username player name
+     * @param datahora data
+     * @requires {@code corrente != null}
+     */
     public void indicaDetalhes(String username, LocalDateTime datahora) {
         createPartidaEspontanea(username, datahora);
         catalogoPartidas.getPartida(username, datahora)
                 .ifPresent(x -> this.partida = x);
     }
 
+    /**
+     * Create partida espontanea
+     *
+     * @param username username
+     * @param datahora data
+     * @requires {@code corrente != null}
+     */
     private void createPartidaEspontanea(String username, LocalDateTime datahora) {
         Partida newPartida = new PartidaEspontanea(datahora, corrente, CatalogoJogadores.getInstance().getJogador(username));
         catalogoPartidas.addPartida(newPartida);
     }
 
-
+    /**
+     * Update partida result
+     *
+     * @param resultado resultado
+     * @requires {@code corrente != null}
+     */
     public double indicarResultado(String resultado) {
-        partida.setResultado(resultado);
-        OOChess.getStrategy().execute(corrente, partida);
+        try {
 
+            partida.setResultado(resultado);
+            OOChess.getStrategy().execute(corrente, partida);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("O resultado dado não é valido!");
+        }
         return corrente.getElo();
     }
 

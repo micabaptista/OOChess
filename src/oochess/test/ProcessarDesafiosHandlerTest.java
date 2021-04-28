@@ -1,5 +1,6 @@
 package oochess.test;
 
+import oochess.app.OOChess;
 import oochess.app.modelo.desafio.Desafio;
 import oochess.app.modelo.desafio.DesafioBuilder;
 import oochess.app.facade.dto.DesafioDTO;
@@ -21,6 +22,8 @@ public class ProcessarDesafiosHandlerTest {
 
     @Before
     public void setUp() {
+        OOChess ooChess = new OOChess();
+
         jogador1 = new Jogador("Mike", "mike123", "mikeGamer");
         jogador1.adicionaDesafioRecebido(new DesafioBuilder()
                 .withDataPartida(DATE_TIME)
@@ -28,12 +31,19 @@ public class ProcessarDesafiosHandlerTest {
                 .build());
 
         processarDesafiosHandler = new ProcessarDesafiosHandler(jogador1);
+
+
+        Desafio d = new DesafioBuilder()
+                .withMensagem("d")
+                .build();
+
+
     }
 
 
     @Test
     public void consultarDesafiosTest() {
-         List<DesafioDTO> desafiosPendentes = processarDesafiosHandler.consultarDesafiosPendentes();
+        List<DesafioDTO> desafiosPendentes = processarDesafiosHandler.consultarDesafiosPendentes();
 
         Desafio expected = new DesafioBuilder()
                 .withDataPartida(DATE_TIME)
@@ -66,7 +76,6 @@ public class ProcessarDesafiosHandlerTest {
 
         Assert.assertEquals(jogador1.getDesafio("1").getDataPartida(), newDate);
     }
-
 
 
 }

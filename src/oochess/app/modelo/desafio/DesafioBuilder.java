@@ -32,13 +32,13 @@ public class DesafioBuilder implements DesafioBuilderInterface {
         return this;
     }
     
-    @Override // este é opcinoal
+    @Override
     public DesafioBuilder withDesafiante(Jogador desafiante) {
         this.jogadorDesafiante = desafiante;
         return this;
     }
     
-    @Override // este é opcinoal
+    @Override
     public DesafioBuilder withDesafiado(Jogador desafiado) {
         this.jogadorDesafiado = desafiado;
         return this;

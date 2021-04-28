@@ -36,21 +36,29 @@ public class CatalogoJogadores {
     public boolean existsJogador(String username) {
         return catalogoJogadores.containsKey(username);
     }
-    
-    public List<JogadorDTO> getJogadoresDelta(Jogador jogadorCorrente, int delta) {
-		List<Jogador> listaDelta = new ArrayList<>();    
 
-		catalogoJogadores.forEach((k, v) -> {
-            if(v.eloNecessario(jogadorCorrente.getElo(), delta)) {
-            	listaDelta.add(catalogoJogadores.get(k));
+
+    /**
+     * Get list of valid jogadores with the given delta
+     *
+     * @param jogadorCorrente jogador Corrente
+     * @param delta           max difference of elo
+     * @return list of valid jogadores with the given delta
+     */
+    public List<JogadorDTO> getJogadoresDelta(Jogador jogadorCorrente, int delta) {
+        List<Jogador> listaDelta = new ArrayList<>();
+
+        catalogoJogadores.forEach((k, v) -> {
+            if (v.isValidDifferenceElo(jogadorCorrente.getElo(), delta)) {
+                listaDelta.add(catalogoJogadores.get(k));
             }
         });
-		
-		return listaDelta
+
+        return listaDelta
                 .stream()
                 .filter(x -> x != jogadorCorrente)
                 .map(u -> new JogadorDTO(u.getUsername(), u.getDiscordUsername(), u.getElo()))
                 .collect(Collectors.toList());
-	}
-    
+    }
+
 }

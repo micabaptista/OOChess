@@ -9,13 +9,22 @@ public class ByOne implements EloStrategy {
 
     public void execute(Jogador jogadorCorrente, Partida partida) {
 
-        if (partida.getResultado().equals("VITORIA")) {
-            jogadorCorrente.increaseElo(VALUE_DEFAULT);
-            partida.getOtherJogador(jogadorCorrente).decreaseElo(VALUE_DEFAULT);
+        switch (partida.getResultado()) {
+            case "VITORIA":
+                jogadorCorrente.increaseElo(VALUE_DEFAULT);
+                partida.getOtherJogador(jogadorCorrente).decreaseElo(VALUE_DEFAULT);
+                break;
 
-        } else if (partida.getResultado().equals("DERROTA")) {
-            jogadorCorrente.decreaseElo(VALUE_DEFAULT);
-            partida.getOtherJogador(jogadorCorrente).decreaseElo(VALUE_DEFAULT);
+            case "DERROTA":
+                jogadorCorrente.decreaseElo(VALUE_DEFAULT);
+                partida.getOtherJogador(jogadorCorrente).decreaseElo(VALUE_DEFAULT);
+                break;
+
+            case "EMPATE":
+                break;
+
+            default:
+                throw new IllegalArgumentException("O resultado dado não é valido!");
         }
     }
 

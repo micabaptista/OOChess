@@ -46,8 +46,7 @@ public class OOChess {
     }
 
     /**
-     * S
-     *
+     * Initialize the strategy chosen in properties or in case of error initialize the default strategy (ByOne)
      */
     @SuppressWarnings("unchecked")
     private static void setStrategy() {

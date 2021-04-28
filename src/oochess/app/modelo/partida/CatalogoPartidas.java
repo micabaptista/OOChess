@@ -23,6 +23,11 @@ public class CatalogoPartidas {
         return instance;
     }
 
+    /**
+     * Get list of all partidas (dto)
+     *
+     * @return list of  all partidas (dto)
+     */
     public List<PartidaDTO> getCatalogoPartida() {
         return this.catalogoPartida
                 .values()
@@ -32,6 +37,11 @@ public class CatalogoPartidas {
     }
 
 
+    /**
+     * Get list of all partidas espontâneas (dto)
+     *
+     * @return list of  all partidas espontâneas (dto)
+     */
     private List<PartidaEspontanea> getPartidasEspontaneas() {
         return catalogoPartida
                 .values()
@@ -41,6 +51,11 @@ public class CatalogoPartidas {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Get list of all partidas associated to a desafio (dto)
+     *
+     * @return list of  all partidas espontâneas (dto)
+     */
     private List<PartidaDesafio> getPartidasDesafio() {
         return catalogoPartida
                 .values()

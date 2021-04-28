@@ -64,17 +64,4 @@ public class PartidaDesafio extends Partida {
         return desafio.getDataPartida();
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Partida)) {
-            return false;
-        }
-
-        Partida p = (PartidaDesafio) o;
-
-        return p.getCodigo().equals(this.getCodigo());
-    }
 }

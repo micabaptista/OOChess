@@ -8,7 +8,6 @@ import oochess.app.generator.RandomCode;
 import oochess.app.modelo.jogador.Jogador;
 import oochess.app.modelo.torneio.Torneio;
 
-//TALVEZ JOGADOR DTO
 public class Desafio {
     private Jogador jogadorDesafiado;
     private Jogador jogadorDesafiante;
@@ -21,8 +20,9 @@ public class Desafio {
     private boolean resposta;
 
 
-    ///builder
-    public Desafio(LocalDateTime dataPartida, String mensagem, Jogador jogadorDesafiante, Jogador jogadorDesafiado, Torneio torneio) {
+    public Desafio(LocalDateTime dataPartida, String mensagem, Jogador jogadorDesafiante, Jogador jogadorDesafiado,
+                   Torneio torneio) {
+
         this.codigo = RandomCode.getInstance().createNewCode();
         this.mensagem = mensagem;
         this.dataPartida = dataPartida;

@@ -1,5 +1,6 @@
 package oochess.test;
 
+import oochess.app.OOChess;
 import oochess.app.modelo.jogador.CatalogoJogadores;
 import oochess.app.modelo.jogador.Jogador;
 import oochess.app.modelo.jogador.JogadorBuilder;
@@ -12,6 +13,7 @@ public class CatalogoJogadoresTest {
 
     @Before
     public void setUp() {
+        OOChess ooChess = new OOChess();
         catalogoJogadores = CatalogoJogadores.getInstance();
         Jogador jogador = new JogadorBuilder()
                 .withUsername("mike")
