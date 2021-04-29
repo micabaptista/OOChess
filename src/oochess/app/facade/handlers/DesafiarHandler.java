@@ -33,13 +33,10 @@ public class DesafiarHandler {
      *
      * @param nome nome Torneio
      * @requires {@code  jogadorCorrente != null}
+     * @ensures Seja torneio: Torneio, tal que torneio.nomeTorneio = nome
      */
     public void indicaTorneio(String nome) {
-        try {
-            this.torneio = catalogoTorneios.getTorneio(nome);
-        } catch (NullPointerException e) {
-            System.out.println("O torneio dado não esta disponível.");
-        }
+        this.torneio = catalogoTorneios.getTorneio(nome);
     }
 
 
@@ -59,13 +56,10 @@ public class DesafiarHandler {
      *
      * @param nome username of jogador
      * @requires {@code  jogadorCorrente != null}
+     * @ensures Seja jogadorDesafiado : Jogador, tal que jogadorDesafiado.username = user
      */
     public void indicaJogador(String nome) {
-        try {
-            this.jogadorDesafiado = catalogoJogadores.getJogador(nome);
-        } catch (NullPointerException e) {
-            System.out.println("O username do jogador dado não foi encontrado.");
-        }
+        this.jogadorDesafiado = catalogoJogadores.getJogador(nome);
     }
 
     /**
@@ -75,6 +69,9 @@ public class DesafiarHandler {
      * @param msg      mensagem opcional
      * @return code of partida
      * @requires {@code  jogadorCorrente != null && jogadorDesafiado != null && datahora >= atual}
+     * @ensures É criado d: Desafio tal que é criada uma associação de d a jogadorCorrente
+     * através de "cria" e é criada uma associação de d a jogadorDesafiado estão atraves de
+     * "recebe"
      */
     public String indicaDetalhes(LocalDateTime datahora, String msg) {
 

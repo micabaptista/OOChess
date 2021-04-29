@@ -40,16 +40,14 @@ public class ProcessarDesafiosHandler {
      * @param codigo   codigo
      * @param resposta resposta
      * @requires {@code jogadorCorrente != null}
+     * @ensures Seja desafio : Desafio, tal que desafio.codigo = cod, desafio e jogadorCorrente estao associados
+     * através de "recebe", desafio.data > data_atual e desafio.resposta = bool
      */
     public void respondeADesafio(String codigo, boolean resposta) {
-        try {
-            this.desafioCorrente = jogadorCorrente.getDesafio(codigo);
-            desafioCorrente.setResposta(resposta);
-            if (resposta) {
-                createPartida();
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Infelizmente o desafio dado não é valido");
+        this.desafioCorrente = jogadorCorrente.getDesafio(codigo);
+        desafioCorrente.setResposta(resposta);
+        if (resposta) {
+            createPartida();
         }
     }
 
@@ -64,11 +62,12 @@ public class ProcessarDesafiosHandler {
     /**
      * Update data of desafio
      *
-     * @param datahora data
-     * @requires {@code jogadorCorrente != null && desafio != null}
+     * @param data data
+     * @requires {@code jogadorCorrente != null && desafio != true}
+     * @ensures {@code desafio.data= data e desafio.resultado = false}
      */
-    public void indicaNovaData(LocalDateTime datahora) {
-        desafioCorrente.setDataPartida(datahora);
+    public void indicaNovaData(LocalDateTime data) {
+        desafioCorrente.setDataPartida(data);
     }
 
 }

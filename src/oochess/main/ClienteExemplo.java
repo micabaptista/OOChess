@@ -33,15 +33,23 @@ public class ClienteExemplo {
 
             DesafiarHandler desh = s.getDesafioParaPartidaHandler();
 
-            desh.indicaTorneio("Torneio Xadrez da CADI");
+            try {
+                desh.indicaTorneio("Torneio Xadrez da CADI");
+            } catch (NullPointerException e) {
+                System.out.println("O torneio dado não esta disponível.");
+            }
 
             List<JogadorDTO> jogadoresElos = desh.indicaDeltaElo(50);
 
             for (JogadorDTO jogadorDTO : jogadoresElos) {
                 System.out.println(jogadorDTO.getUsername() + ": " + jogadorDTO.getElo());
             }
+            try {
+                desh.indicaJogador("Maribel");
+            } catch (NullPointerException e) {
+                System.out.println("O username do jogador dado não foi encontrado.");
+            }
 
-            desh.indicaJogador("Maribel");
             codigoDaPartida = desh.indicaDetalhes(LocalDateTime.now().plusDays(1), "Amanhã vou finalmente derrotar-te!");
 
         });
@@ -52,9 +60,12 @@ public class ClienteExemplo {
             RegistarResultadoHandler rh = s.getRegistarResultadoDePartida();
             rh.indicaPartidaEspontanea();
             rh.indicaDetalhes("Felismina", LocalDateTime.now());
-            double novoEloDoSilvino = rh.indicarResultado("DERROTA");
-            System.out.println("[NovoElo] Silvino: " + novoEloDoSilvino);
-
+            try {
+                double novoEloDoSilvino = rh.indicarResultado("DERROTA");
+                System.out.println("[NovoElo] Silvino: " + novoEloDoSilvino);
+            } catch (IllegalArgumentException e) {
+                System.out.println("O resultado dado não é valido!");
+            }
         });
 
         // SSD - UC7
@@ -63,11 +74,16 @@ public class ClienteExemplo {
             ProcessarDesafiosHandler pdh = s.getProcessarDesafios();
             boolean disponivel = true;
             for (DesafioDTO desafioDTO : pdh.consultarDesafiosPendentes()) {
-                pdh.respondeADesafio(desafioDTO.getCodigo(), disponivel);
-                if (!disponivel) {
-                    pdh.indicaNovaData(LocalDateTime.now().plusDays(2));
+
+                try {
+                    pdh.respondeADesafio(desafioDTO.getCodigo(), disponivel);
+                    if (!disponivel) {
+                        pdh.indicaNovaData(LocalDateTime.now().plusDays(2));
+                    }
+                    disponivel = !disponivel;
+                } catch (NullPointerException e) {
+                    System.out.println("Infelizmente o desafio dado não é valido");
                 }
-                disponivel = !disponivel;
             }
         });
 
@@ -75,10 +91,17 @@ public class ClienteExemplo {
 
         talvezOutraSessao.ifPresent((Sessao s) -> {
             RegistarResultadoHandler rh = s.getRegistarResultadoDePartida();
-            rh.indicaDesafio(codigoDaPartida);
-            double novoEloDaMaribel = rh.indicarResultado("VITORIA");
-            System.out.println("[NovoElo] Maribel: " + novoEloDaMaribel);
-
+            try {
+                rh.indicaDesafio(codigoDaPartida);
+            } catch (NullPointerException e) {
+                System.out.println("O código do desafio dado não é válido");
+            }
+            try {
+                double novoEloDaMaribel = rh.indicarResultado("VITORIA");
+                System.out.println("[NovoElo] Maribel: " + novoEloDaMaribel);
+            } catch (IllegalArgumentException e) {
+                System.out.println("O resultado dado não é valido!");
+            }
         });
     }
 }

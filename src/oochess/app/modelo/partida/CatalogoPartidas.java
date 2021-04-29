@@ -72,11 +72,13 @@ public class CatalogoPartidas {
                 .findAny();
     }
 
-    public Optional<PartidaDesafio> getPartida(String cod) {
+    public PartidaDesafio getPartida(String cod) {
         return getPartidasDesafio()
                 .stream()
                 .filter(x -> x.getDesafio().getCodigo().equals(cod))
-                .findAny();
+                .limit(1)
+                .collect(Collectors.toList())
+                .get(0);
     }
 
 

@@ -29,13 +29,11 @@ public class RegistarResultadoHandler {
      *
      * @param codigoDesafio desafio code
      * @requires {@code corrente != null}
+     * @ensures Seja d: desafio, tal que d.codigo = cod e d e jogadorCorrente estao associados
      */
     public void indicaDesafio(String codigoDesafio) {
-        if (catalogoPartidas.getPartida(codigoDesafio).isPresent()) {
-            this.partida = catalogoPartidas.getPartida(codigoDesafio).get();
-        } else {
-            System.out.println("O código do desafio dado não é válido");
-        }
+        this.partida = catalogoPartidas.getPartida(codigoDesafio);
+
     }
 
     /**
@@ -78,16 +76,11 @@ public class RegistarResultadoHandler {
      *
      * @param resultado resultado
      * @requires {@code corrente != null}
+     * @ensures Definimos prt. resultado = result e jogadorCorrente.elo = eloAtualizado
      */
     public double indicarResultado(String resultado) {
-        try {
-
-            partida.setResultado(resultado);
-            OOChess.getStrategy().execute(corrente, partida);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("O resultado dado não é valido!");
-        }
+        partida.setResultado(resultado);
+        OOChess.getStrategy().execute(corrente, partida);
         return corrente.getElo();
     }
 
