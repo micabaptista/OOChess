@@ -11,7 +11,3 @@ Built with Java
 
 ## Credits
 Thanks to Afonso Rosa, Duarte Pinheiro, Alcides Fonseca
-
-## License
-
-MIT © Michael Baptista
